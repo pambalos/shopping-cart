@@ -64,16 +64,6 @@
           <span>Future Sneakers</span>
           <span>White</span>
         </div>
-
-        <div class="quantity">
-          <button class="plus-btn" type="button" name="button">
-            <img src="{{ url_for('static', filename = 'plus.svg') }}" alt="" />
-          </button>
-          <input type="text" name="name" value="1">
-          <button class="minus-btn" type="button" name="button">
-            <img src="{{ url_for('static', filename = 'minus.svg') }}" alt="" />
-          </button>
-        </div>
         <div class="item-price">$870</div>
       </div>
 
@@ -93,21 +83,22 @@
           <span>Brushed Scarf</span>
           <span>Brown</span>
         </div>
-        <div class="item-price">$349</div>
-        {{ form.quant_three.label(class="form-control-label") }}
+        <div class="item-price" style = "margin-left: 15px;">$349</div>
+
+        {{ form.quant_three.label(class="form-c", style = "width: 44px; height: 46px;") }}
         {% if form.quant_three.errors %}
-          {{ form.quant_three(class="form-control form-control-lg is-invalid") }}
+          {{ form.quant_three(class="form-c form-c-lg is-invalid") }}
           <div class="invalid-feedback">
               {% for error in form.quant_three.errors %}
                 <span>{{ error }}</span>
               {% endfor %}
           </div>
           {% else %}
-            {{ form.quant_three(class="form-control form-control-lg") }}
+            {{ form.quant_three(class="myclass", style = "width: 44px; height: 46px; margin-top: 15px; margin-left: 30px; border-radius: 7px;") }}
           {% endif %}
       </div>
       <div class = "pricedisplay" style="text-align: center;">
-        <div class = "total-price">
+        <div class = "total-price" style="padding-top: 0px;">
           {{ form.submit(class="btn btn-outline-info") }}
 
         </div>
