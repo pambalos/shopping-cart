@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shopping Cart</title>
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}" media="screen" title="no title" charset="utf-8">
     <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
     <meta name="robots" content="noindex,follow" />
@@ -72,7 +74,6 @@
             <img src="{{ url_for('static', filename = 'minus.svg') }}" alt="" />
           </button>
         </div>
-
         <div class="item-price">$870</div>
       </div>
 
@@ -92,23 +93,23 @@
           <span>Brushed Scarf</span>
           <span>Brown</span>
         </div>
-        {{  }}
+        <div class="item-price">$349</div>
+        {{ form.quant_three.label(class="form-control-label") }}
+        {% if form.quant_three.errors %}
+          {{ form.quant_three(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+              {% for error in form.quant_three.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+          {% else %}
+            {{ form.quant_three(class="form-control form-control-lg") }}
+          {% endif %}
       </div>
       <div class = "pricedisplay" style="text-align: center;">
         <div class = "total-price">
-          $<span id = "total">0</span>
-          <script type="text/javascript">
-            $('.minus-btn').on('click', function(e) {
-              e.preventDefault();
-              console.log('Seems to enter here');
-              var $this = $(this);
-            });
+          {{ form.submit(class="btn btn-outline-info") }}
 
-            function updateTotal() {
-              var total = 0;
-            }
-
-          </script>
         </div>
       </div>
     </div>
