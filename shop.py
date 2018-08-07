@@ -10,7 +10,7 @@ from oauthlib.oauth2 import BackendApplicationClient
 from requests.auth import HTTPBasicAuth
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] ='sZWjFJmyFQnzkVMxbFCTbByZNJhaJV' #setting secret key
+app.config['SECRET_KEY'] ='sZWjFJmyFQnzkVMxbOIAIZNJhaJV' #setting secret key
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 
 db = SQLAlchemy(app)
@@ -51,6 +51,11 @@ print(testCart)
 def shop():
     cart = Order()
     return render_template('index.html', title = 'Shop', cart = cart)
+
+@app.route('/dev')
+def check():
+    cart = Order()
+    return render_template('cartForm.html', title = 'Dev', cart = cart)
 
 if __name__ == '__main__':
     app.run(debug=True)

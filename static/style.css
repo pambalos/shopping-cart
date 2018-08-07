@@ -34,6 +34,7 @@ body {
   color: #5E6977;
   font-size: 18px;
   font-weight: 400;
+  text-align: center;
 }
 
 .item {
@@ -130,6 +131,7 @@ body {
   padding-top: 20px;
   margin-right: 60px;
 }
+
 .quantity input {
   -webkit-appearance: none;
   border: none;
