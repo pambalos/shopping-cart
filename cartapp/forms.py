@@ -28,7 +28,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField("Login")
 
 class OrderForm(FlaskForm):
-    quant_one = IntegerField( validators = [NumberRange(min = 0, max = 100, message = "min: 0, max: 100")])
-    quant_two = IntegerField( validators = [NumberRange(min = 0, max = 100, message = "min: 0, max: 100")])
-    quant_three = IntegerField( validators = [NumberRange(min = 0, max = 100, message = "min: 0, max: 100")])
+    quant_one = IntegerField("", validators = [NumberRange(min = 0, max = 100, message = "min: 0, max: 100")])
+    quant_two = IntegerField("", validators = [NumberRange(min = 0, max = 100, message = "min: 0, max: 100")])
+    quant_three = IntegerField("", validators = [NumberRange(min = 0, max = 100, message = "min: 0, max: 100")])
     submit = SubmitField("Order Now")
