@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+{% block content %}
+  <body>
+    <form method = "POST" action = "">
+      {{ form.hidden_tag() }}
+    <div class="shopping-cart"  style = "height: 450px;">
+      <!-- Title -->
+      <div class="title">
+        Shopping Cart
+      </div>
+      <!-- Product #1 -->
+      {% if form.quant_one > 0 %}
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+        <div class="image">
+          <img src="{{ url_for('static', filename = 'item-1.png') }}" alt="" />
+        </div>
+
+        <div class="description">
+          <span>Common Projects</span>
+          <span>Bball High</span>
+          <span>White</span>
+        </div>
+
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'plus.svg') }}" alt="" />
+          </button>
+          {{ form.quant_one(class = "myclass", min = "0", max = "100", value = "0", readonly = true, style = "    float: none;
+    padding-left: 0px;
+    padding-right: 0px;
+    right: 0px;
+    left: 0px") }}
+          <button class="minus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'minus.svg') }}" alt="" />
+          </button>
+        </div>
+
+        <div class="itemprice" style = "padding-top: 26px;">$549 {{ form.quant_one*p1 }}</div>
+      </div>
+      {% endif %}
+      <!-- Product #2 -->
+      {% if form.quant_two > 0 %}
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+          <img src="{{ url_for('static', filename = 'item-2.png') }}" alt=""/>
+        </div>
+
+        <div class="description">
+          <span>Maison Margiela</span>
+          <span>Future Sneakers</span>
+          <span>White</span>
+        </div>
+
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'plus.svg') }}" alt="" />
+          </button>
+          {{ form.quant_two(class = "myclass", min = "0", max = "100", value = "0", readonly = true, style = "    float: none;
+    padding-left: 0px;
+    padding-right: 0px;
+    right: 0px;
+    left: 0px") }}
+          <button class="minus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'minus.svg') }}" alt="" />
+          </button>
+        </div>
+
+        <div class="itemprice" style = "padding-top: 26px;">$870 {{ form.quant_two*form.p2 }}</div>
+      </div>
+      {% endif %}
+      <!-- Product #3 -->
+      {% if form.quant_three > 0 %}
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+        <div class="image">
+          <img src="{{ url_for('static', filename = 'item-3.png') }}" alt="" />
+        </div>
+        <div class="description">
+          <span>Our Legacy</span>
+          <span>Brushed Scarf</span>
+          <span>Brown</span>
+        </div>
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'plus.svg') }}" alt="" />
+          </button>
+          {{ form.quant_three(class = "myclass", min = "0", max = "100", value = "0", readonly = true, style = "    float: none;
+    padding-left: 0px;
+    padding-right: 0px;
+    right: 0px;
+    left: 0px") }}
+          <button class="minus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'minus.svg') }}" alt="" />
+          </button>
+        </div>
+        <div class="itemprice" style = "padding-top: 26px;">$349 {{ form.quant_three*p3 }}
+        </div>
+      </div>
+      {% endif %}
+      <div class = "pricedisplay" style="text-align: center;">
+        <div class = "totalprice" style = "padding-top: 0px;">
+          {{ form.submit(class="btn btn-outline-info", style = "color: #ffffff; background-color: #0253c5; text-align: center;") }}
+        </div>
+      </div>
+    </div>
+    </form>
+  </body>
+{% endblock content %}

@@ -1,0 +1,171 @@
+{% extends "layout.html" %}
+{% block content %}
+  <body>
+    <form method = "POST" action = "">
+    <div class="shopping-cart"  style = "height: 450px;">
+      <!-- Title -->
+      <div class="title">
+        Current Projects
+      </div>
+      <!-- Product #1 -->
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+        <div class="image">
+          <img src="{{ url_for('static', filename = 'item-1.png') }}" alt="" />
+        </div>
+
+        <div class="description">
+          <span>Common Projects</span>
+          <span>Bball High</span>
+          <span>White</span>
+        </div>
+
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'plus.svg') }}" alt="" />
+          </button>
+          {{ form.quant_one(class = "myclass", min = "0", max = "100", value = "0", readonly = true, style = "    float: none;
+    padding-left: 0px;
+    padding-right: 0px;
+    right: 0px;
+    left: 0px") }}
+          <button class="minus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'minus.svg') }}" alt="" />
+          </button>
+        </div>
+
+        <div class="itemprice" style = "padding-top: 26px;">$549</div>
+      </div>
+
+      <!-- Product #2 -->
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+          <img src="{{ url_for('static', filename = 'item-2.png') }}" alt=""/>
+        </div>
+
+        <div class="description">
+          <span>Maison Margiela</span>
+          <span>Future Sneakers</span>
+          <span>White</span>
+        </div>
+
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'plus.svg') }}" alt="" />
+          </button>
+          {{ form.quant_two(class = "myclass", min = "0", max = "100", value = "0", readonly = true, style = "    float: none;
+    padding-left: 0px;
+    padding-right: 0px;
+    right: 0px;
+    left: 0px") }}
+          <button class="minus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'minus.svg') }}" alt="" />
+          </button>
+        </div>
+
+        <div class="itemprice" style = "padding-top: 26px;">$870</div>
+      </div>
+
+      <!-- Product #3 -->
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+        <div class="image">
+          <img src="{{ url_for('static', filename = 'item-3.png') }}" alt="" />
+        </div>
+
+        <div class="description">
+          <span>Our Legacy</span>
+          <span>Brushed Scarf</span>
+          <span>Brown</span>
+        </div>
+
+        <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'plus.svg') }}" alt="" />
+          </button>
+          {{ form.quant_three(class = "myclass", min = "0", max = "100", value = "0", readonly = true, style = "    float: none;
+    padding-left: 0px;
+    padding-right: 0px;
+    right: 0px;
+    left: 0px") }}
+          <button class="minus-btn" type="button" name="button">
+            <img src="{{ url_for('static', filename = 'minus.svg') }}" alt="" />
+          </button>
+        </div>
+        <div class="itemprice" style = "padding-top: 26px;">$349
+        </div>
+      </div>
+      <div class = "pricedisplay" style="text-align: center;">
+        <div class = "totalprice" style = "padding-top: 0px;">
+          {{ form.submit(class="btn btn-outline-info", style = "color: #ffffff; background-color: #0253c5; text-align: center;") }}
+          <!--
+          $<sp id = "total">0</sp>
+
+        --> <!-- This section can be edited later for future cart total update live -->
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $('.minus-btn').on('click', function(e) {
+    		e.preventDefault();
+    		var $this = $(this);
+    		var $input = $this.closest('div').find('input');
+        var $pricei = $this.closest('div').find('data-p');
+        var itpr = parseInt($pricei.val());
+
+        var $out = $this.find('total');
+        var pt = parseInt($out.val());
+
+    		var value = parseInt($input.val());
+    		if (value > 1) {
+    			value = value - 1;
+          pt = pt - itpr;
+    		} else {
+    			value = 0;
+    		}
+        console.log('changed value to ' + value);
+        console.log('pt changed to ' + pt)
+        $input.val(value);
+        $out.val(pt)
+    	});
+
+    	$('.plus-btn').on('click', function(e) {
+    		e.preventDefault();
+    		var $this = $(this);
+    		var $input = $this.closest('div').find('input');
+    		var value = parseInt($input.val());
+
+        var $pricei = $this.closest('div').find('data-p');
+        var itpr = parseInt($pricei.val());
+        var $out = $this.find('total');
+        var pt = parseInt($out.val());
+
+    		if (value < 100) {
+          pt = pt + itpr;
+      		value = value + 1;
+    		} else {
+    			value =100;
+    		}
+    		$input.val(value);
+        $out.val(pt);
+    	});
+
+      $('.like-btn').on('click', function() {
+        $(this).toggleClass('is-active');
+      });
+    </script>
+    </form>
+  </body>
+{% endblock content %}

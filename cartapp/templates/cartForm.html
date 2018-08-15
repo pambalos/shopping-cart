@@ -1,0 +1,150 @@
+{% extends "layout.html" %}
+{% block content %}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping Cart</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}" media="screen" title="no title" charset="utf-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
+    <meta name="robots" content="noindex,follow" />
+  </head>
+  <body>
+    <div class="shopping-cart"  style = "height: 450px;">
+      <!-- Title -->
+      <div class="title">
+        Shopping Bag
+      </div>
+
+      <!-- Product #1 -->
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+          <img src="{{ url_for('static', filename = 'item-1.png') }}" alt="" />
+        </div>
+
+        <div class="description">
+          <span>Common Projects</span>
+          <span>Bball High</span>
+          <span>White</span>
+        </div>
+        <div class="item-price" style = "margin-left: 15px;">$549</div>
+        {% if form.quant_one.errors %}
+          {{ form.quant_one(class="form-c form-c-lg is-invalid") }}
+          <div class="invalid-feedback">
+              {% for error in form.quant_one.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+          {% else %}
+            {{ form.quant_one(class="myclass", type = "number", min = "0", max = "100", value = "0", maxlength="2", step = "1", style = "width: 44px; height: 46px; margin-top: 15px; margin-left: 60px; border-radius: 7px;text-align: center;") }}
+          {% endif %}
+      </div>
+
+      <!-- Product #2 -->
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+          <img src="{{ url_for('static', filename = 'item-2.png') }}" alt=""/>
+        </div>
+
+        <div class="description">
+          <span>Maison Margiela</span>
+          <span>Future Sneakers</span>
+          <span>White</span>
+        </div>
+        <div class="item-price" style = "margin-left: 15px">$870</div>
+        {% if form.quant_two.errors %}
+          {{ form.quant_two(class="form-c form-c-lg is-invalid") }}
+          <div class="invalid-feedback">
+              {% for error in form.quant_two.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+          {% else %}
+            {{ form.quant_two(class="myclass", type = "number", min = "0", max = "100", value = "0", maxlength="2", step = "1", style = "width: 44px; height: 46px; margin-top: 15px; margin-left: 60px; border-radius: 7px;text-align: center;") }}
+          {% endif %}
+      </div>
+
+      <!-- Product #3 -->
+      <div class="item">
+        <div class="buttons">
+          <span class="delete-btn"></span>
+          <span class="like-btn"></span>
+        </div>
+
+        <div class="image">
+          <img src="{{ url_for('static', filename = 'item-3.png') }}" alt="" />
+        </div>
+
+        <div class="description">
+          <span>Our Legacy</span>
+          <span>Brushed Scarf</span>
+          <span>Brown</span>
+        </div>
+        <div class="item-price" style = "margin-left: 15px;">$349</div>
+        {% if form.quant_three.errors %}
+          {{ form.quant_three(class="form-c form-c-lg is-invalid") }}
+          <div class="invalid-feedback">
+              {% for error in form.quant_three.errors %}
+                <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+          {% else %}
+            {{ form.quant_three(class="myclass", type = "number", min = "0", max = "100", value = "0", maxlength="2", step = "1", style = "width: 44px; height: 46px; margin-top: 15px; margin-left: 60px; border-radius: 7px;text-align: center;") }}
+          {% endif %}
+      </div>
+      <div class = "pricedisplay" style="text-align: center;">
+        <div class = "total-price" style="padding-top: 0px;">
+          {{ form.submit(class="btn btn-outline-info") }}
+
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $('.minus-btn').on('click', function(e) {
+    		e.preventDefault();
+    		var $this = $(this);
+    		var $input = $this.closest('div').find('input');
+    		var value = parseInt($input.val());
+    		if (value > 1) {
+    			value = value - 1;
+    		} else {
+    			value = 0;
+    		}
+        console.log('changed value to ' + value);
+        $input.val(value);
+    	});
+
+    	$('.plus-btn').on('click', function(e) {
+    		e.preventDefault();
+    		var $this = $(this);
+    		var $input = $this.closest('div').find('input');
+    		var value = parseInt($input.val());
+
+    		if (value < 100) {
+      		value = value + 1;
+    		} else {
+    			value =100;
+    		}
+
+    		$input.val(value);
+    	});
+
+      $('.like-btn').on('click', function() {
+        $(this).toggleClass('is-active');
+      });
+    </script>
+  </body>
+{% endblock content %}
