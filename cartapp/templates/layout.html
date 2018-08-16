@@ -36,7 +36,13 @@
                 <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
                 <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
               {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('profile') }}">Profile</a>
+                <a class="nav-item nav-link" href="{{ url_for('profile') }}">
+                {% if current_user.first_name is not none %}
+                  {{current_user.first_name}}
+                {% else %}
+                  Profile
+                {% endif %}
+                </a>
                 <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
               {% endif %}
             </div>

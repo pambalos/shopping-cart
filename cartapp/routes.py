@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect, session, request
 from cartapp import app, db
 from cartapp.forms import OrderForm, RegistrationForm, LoginForm, ProfileForm
 from cartapp.models import User, Order
-from cartapp import bcrypt
+from cartapp import bcrypt, oauth
 from flask_login import login_user, current_user, logout_user
 
 @app.route('/')
@@ -38,6 +38,7 @@ def login():
         user = User.query.filter_by(email = form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user) # if does not work try editing to login_user(user, remember = True)
+            flash(f'Login Successful', 'success')
             return redirect(url_for('profile'))
         else:
             flash(f'Login failed, please check email and password', 'danger')
@@ -62,6 +63,11 @@ def register():
         flash(f'Account for {form.email.data} created, you may now login', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Register', form = form)
+
+@app.route('/profile/register', methods = ['GET', 'POST'])
+def authorize():
+
+
 
 @app.route('/logout')
 def logout():
