@@ -66,7 +66,7 @@ def register():
 
 @app.route('/profile/register', methods = ['GET', 'POST'])
 def authorize():
-
+    return 
 
 
 @app.route('/logout')
