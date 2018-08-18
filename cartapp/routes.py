@@ -25,6 +25,12 @@ def home():
         print("Order submitted with q1: " + form.quant_one.data + " q2: " + form.quant_two.data + " q3: " + form.quant_three.data)
     return render_template('displayCart.html', title = 'Cart', form = form)
 
+@app.route('/about')
+def about():
+    
+    return render_template('about.html', title = 'About')
+
+
 @app.route('/dev', methods = ['GET', 'POST'])
 def check():
     form = OrderForm()
