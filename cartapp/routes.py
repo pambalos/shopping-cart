@@ -4,6 +4,8 @@ from cartapp.forms import OrderForm, RegistrationForm, LoginForm, ProfileForm
 from cartapp.models import User, Order
 from cartapp import bcrypt, oauth
 from flask_login import login_user, current_user, logout_user
+from requests_oauthlib import OAuth2Session
+from cartapp.keys import *
 
 @app.route('/')
 @app.route('/shop', methods = ['GET', 'POST'])
@@ -66,10 +68,14 @@ def register():
 
 @app.route('/profile/register', methods = ['GET', 'POST'])
 def authorize():
-    return 
+    return
 
 
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route('/callback')
+def authorize():
+    cbook = OAuth2Session()
