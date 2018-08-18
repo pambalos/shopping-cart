@@ -6,6 +6,7 @@ from cartapp import bcrypt, oauth
 from flask_login import login_user, current_user, logout_user
 from requests_oauthlib import OAuth2Session
 from cartapp.keys import *
+import requests, json
 
 @app.route('/')
 @app.route('/shop', methods = ['GET', 'POST'])
@@ -66,16 +67,35 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Register', form = form)
 
-@app.route('/profile/register', methods = ['GET', 'POST'])
-def authorize():
-    return
-
-
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route('/callback')
+@app.route('/authorize') #Authorization call to direct user to checkbook for login
 def authorize():
-    cbook = OAuth2Session()
+    cbook = OAuth2Session(client_id, scope = 'check')
+    authorization_url, state = cbook.authorization_url(auth_url)
+    session['oauth_state'] = state
+    return redirect(authorization_url)
+
+@app.route('/callback', methods = ["GET", "POST"])
+def callback():
+    cbook = OAuth2Session(client_id, redirect_uri = callback_url, state = session['oauth_state'])
+    codebase = str(request.url)
+    trash, acode = codebase.split("code=") #acode now holds parsed authorization code passed back in redirect header
+
+    token_headers = {
+        'client_id' : client_id,
+        'grant_type': 'authorization_code',
+        'scope' : 'check',
+        'code' : acode,
+        'redirect_uri' : 'http://127.0.0.1:5000/callback',
+        'client_secret' : api_secret
+    }
+
+    response = requests.request("POST", token_url, headers = token_headers)
+    print('POST request attempted and completed')
+    print(response.text)
+
+    return redirect(url_for('profile'))
