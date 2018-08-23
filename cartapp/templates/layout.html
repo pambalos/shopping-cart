@@ -18,7 +18,7 @@
 </head>
 <body>
     <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel navbar-fixed-top" style="background-color: #000000; border-radius:0; margin-bottom:0; border:0; position:fixed; top: 0; width: 100%;">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel navbar-fixed-top" style="background-color: #000000; border-radius:0; margin-bottom:0; border:0; position:fixed; top: 0; width: 100%; z-index:999;">
         <div class="container">
           <a class="navbar-brand mr-4" href="/">Sneak Em</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,10 +49,9 @@
         </div>
       </nav>
     </header>
-
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-    <main role="main" class="container" style = "width: 100%; height:auto;">
+    <main role="main" class="container" style = "width: 100%; height:auto; z-index:-999; margin-top:80px;">
       <div class="row" style = "width: 100%;">
         <div class="col-md-8" style = "width: 100%; flex: none; max-width: none;">
               {% for category, message in messages %}

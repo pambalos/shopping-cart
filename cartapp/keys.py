@@ -5,3 +5,4 @@ auth_head = api_key + ':' + api_secret
 callback_url = "http://127.0.0.1:5000/callback"
 auth_url = "https://checkbook.io/oauth/authorize"
 token_url = "https://checkbook.io/oauth/token"
+client_email = 'wowpambalos@gmail.com'

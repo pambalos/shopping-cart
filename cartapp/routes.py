@@ -100,9 +100,10 @@ def callback():
         'client_secret' : api_secret
     }
 
-    response = requests.request("POST", token_url, headers = token_headers)
+    response = requests.post(token_url, data = token_headers)
     print('POST request attempted and completed')
     print(response.text)
     user = User.query.filter_by(email = current_user.email).first()
-    user.update()
+    user.update_token()
+
     return redirect(url_for('profile'))

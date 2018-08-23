@@ -11,7 +11,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable = False)
     first_name = db.Column(db.String(20), unique = False)
     last_name = db.Column(db.String(20), unique = False)
-    cbook = db.Column(db.String(60))
+    token = db.Column(db.String(60))
+    rToken = db.Column(db.String(60))
 
     def update(self, email, first_name, last_name):
         self.email = email
@@ -19,8 +20,9 @@ class User(db.Model, UserMixin):
         self.last_name = last_name
         db.session.commit()
 
-    def update_token(self, token):
-        self.cbook = token
+    def update_token(self, token, rToken):
+        self.token = token
+        self.rToken = rToken
         db.session.commit()
 
     def __repr__(self):
