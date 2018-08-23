@@ -18,7 +18,11 @@ class User(db.Model, UserMixin):
         self.first_name = first_name
         self.last_name = last_name
         db.session.commit()
-        
+
+    def update_token(self, token):
+        self.cbook = token
+        db.session.commit()
+
     def __repr__(self):
         return f"User('{ self.email }', {self.id})"
 

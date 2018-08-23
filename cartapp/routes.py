@@ -94,7 +94,7 @@ def callback():
     token_headers = {
         'client_id' : client_id,
         'grant_type': 'authorization_code',
-        'scope' : 'check',
+        'scope' : ['check'],
         'code' : acode,
         'redirect_uri' : 'http://127.0.0.1:5000/callback',
         'client_secret' : api_secret
@@ -103,5 +103,6 @@ def callback():
     response = requests.request("POST", token_url, headers = token_headers)
     print('POST request attempted and completed')
     print(response.text)
-
+    user = User.query.filter_by(email = current_user.email).first()
+    user.update()
     return redirect(url_for('profile'))
