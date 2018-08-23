@@ -78,7 +78,7 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route('/authorize') #Authorization call to direct user to checkbook for login
+@app.route('/authorize') #Autho rization call to direct user to checkbook for login
 def authorize():
     cbook = OAuth2Session(client_id, scope = 'check')
     authorization_url, state = cbook.authorization_url(auth_url)
@@ -100,10 +100,13 @@ def callback():
         'client_secret' : api_secret
     }
 
-    response = requests.post(token_url, data = token_headers)
+    response = requests.post(token_url, data = token_headers) #proper request formatting
+    response_data = json.loads(response.text) #load data in as dictionary
     print('POST request attempted and completed')
     print(response.text)
+    print(response_data["access_token"])
+    print(response_data["refresh_token"])
     user = User.query.filter_by(email = current_user.email).first()
-    user.update_token()
+    user.update_token(response_data["access_token"], response_data["refresh_token"])
 
     return redirect(url_for('profile'))
