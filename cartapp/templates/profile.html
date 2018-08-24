@@ -3,7 +3,7 @@
 <body  style = "padding: 0px 0px;">
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if not messages %}
-      <div class = "shopping-cart" style="width: 90%; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 110px;">
+      <div class = "shopping-cart" style="width: 90%; max-width: 600px; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 110px;">
       {% else %}
       <div class = "shopping-cart" style="width: 90%; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 0;">
     {% endif %}
@@ -53,13 +53,19 @@
       </div>
       <div class="form-group" style="height: 130px; margin-bottom: 0px; padding-top: 50px;">
         {% if current_user.token is none %}
-        <h6>
+        <h3>
           <a href={{ url_for('authorize') }}>Link Checkbook Account</a>
+        </h3>
+        <h6>
+          Link or sign up for a checkbook account to make your purchases easy.
         </h6>
         {% else %}
         <h3>
           Checkbook Account Linked
         </h3>
+        <h6>
+          {{ form.delink(class = "small-text", style = "border-width: 0; background-color: white; ") }}
+        </h6>
         {% endif %}
       </div>
       <div class = "totalprice" style = "padding-top: 0px;">

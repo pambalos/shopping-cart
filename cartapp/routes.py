@@ -57,8 +57,13 @@ def login():
 def profile():
     form = ProfileForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email = current_user.email).first()
-        user.update(form.email.data, form.first_name.data, form.last_name.data)
+        if 'save' in request.form:
+            user = User.query.filter_by(email = current_user.email).first()
+            user.update(form.email.data, form.first_name.data, form.last_name.data)
+            flash()
+        if 'delink' in request.form:
+            user = User.query.filter_by(email = current_user.email).first()
+            user.delinkCheckbook()
     return render_template('profile.html', title = 'Profile', form = form)
 
 @app.route('/register', methods = ['GET', 'POST'])

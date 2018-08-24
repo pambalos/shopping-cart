@@ -24,6 +24,7 @@ class ProfileForm(FlaskForm):
     first_name = StringField("First Name")
     last_name = StringField("Last Name")
     save = SubmitField("Save Changes")
+    delink = SubmitField('Disconnect Checkbook Account')
 
 class LoginForm(FlaskForm):
     email = StringField("Email", validators = [DataRequired(), Email()])

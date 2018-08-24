@@ -25,6 +25,11 @@ class User(db.Model, UserMixin):
         self.rToken = rToken
         db.session.commit()
 
+    def delinkCheckbook(self):
+        self.token = None
+        self.rToken = None
+        db.session.commit()
+
     def __repr__(self):
         return f"User('{ self.email }', {self.id})"
 
