@@ -59,8 +59,10 @@ def profile():
     if form.validate_on_submit():
         if 'save' in request.form:
             user = User.query.filter_by(email = current_user.email).first()
-            user.update(form.email.data, form.first_name.data, form.last_name.data)
-            flash()
+            if User.query.filter_by(email = form.email.data).first() is not None:
+                flash(f'The email address "{form.email.data}" is already in use.', 'danger')
+            else:
+                user.update(form.email.data, form.first_name.data, form.last_name.data)
         if 'delink' in request.form:
             user = User.query.filter_by(email = current_user.email).first()
             user.delinkCheckbook()
@@ -76,6 +78,8 @@ def register():
         db.session.commit()
         flash(f'Account for {form.email.data} created, you may now login', 'success')
         return redirect(url_for('login'))
+    if current_user is not None:
+        return redirect(url_for('profile'))
     return render_template('register.html', title = 'Register', form = form)
 
 @app.route('/logout')

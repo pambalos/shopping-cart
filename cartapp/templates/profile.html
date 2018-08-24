@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-<body  style = "padding: 0px 0px;">
+<body  style = "padding: 0px 0px; height: auto;">
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if not messages %}
       <div class = "shopping-cart" style="width: 90%; max-width: 600px; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 110px;">
@@ -22,7 +22,7 @@
                 {% endfor %}
             </div>
         {% else %}
-          {{ form.email(class="form-c form-c-lg", value = current_user.email, style = "height: 46px; float: left; width: 90%; margin-left: 5%; margin-right: 5%; left: 0px; margin-top:15px;") }}
+          {{ form.email(class="form-c form-c-lg", value = current_user.email, style = "height: 46px; float: left; width: 90%; margin-left: 5%; margin-right: 5%; left: 0px; margin-top:5px;") }}
         {% endif %}
       </div>
       <div class="form-group" style="height: 130px; margin-bottom: 0px;">
@@ -35,7 +35,7 @@
                 {% endfor %}
             </div>
         {% else %}
-          {{ form.first_name(class="form-c form-c-lg", value = current_user.first_name, style = "height: 46px; float: left; width: 90%; margin-left: 5%; margin-right: 5%; left: 0px; margin-top:15px;") }}
+          {{ form.first_name(class="form-c form-c-lg", value = current_user.first_name, style = "height: 46px; float: left; width: 90%; margin-left: 5%; margin-right: 5%; left: 0px; margin-top:5px;") }}
         {% endif %}
       </div>
       <div class="form-group" style="height: 130px; margin-bottom: 0px;">
@@ -48,7 +48,7 @@
                 {% endfor %}
             </div>
         {% else %}
-          {{ form.last_name(class="form-c form-c-lg", value = current_user.last_name, style = "height: 46px; float: left; width: 90%; margin-left: 5%; margin-right: 5%; left: 0px; margin-top:15px;") }}
+          {{ form.last_name(class="form-c form-c-lg", value = current_user.last_name, style = "height: 46px; float: left; width: 90%; margin-left: 5%; margin-right: 5%; left: 0px; margin-top:5px;") }}
         {% endif %}
       </div>
       <div class="form-group" style="height: 130px; margin-bottom: 0px; padding-top: 50px;">
@@ -60,15 +60,15 @@
           Link or sign up for a checkbook account to make your purchases easy.
         </h6>
         {% else %}
-        <h3>
+        <h3 style = "font-weight: 350; margin-bottom: 0;">
           Checkbook Account Linked
         </h3>
         <h6>
-          {{ form.delink(class = "small-text", style = "border-width: 0; background-color: white; ") }}
+          {{ form.delink(class="btn btn-outline-info", style = "color: #989898;background-color: White;text-align: center;border-width: 0;text-decoration: underline; padding-top: 0;") }}
         </h6>
         {% endif %}
       </div>
-      <div class = "totalprice" style = "padding-top: 0px;">
+      <small class = "text-muted" style = "padding-top: 0px;">
         {{ form.save(class="btn btn-outline-info", style = "color: #ffffff; background-color: #0253c5; text-align: center;") }}
       </div>
     </form>
