@@ -15,6 +15,21 @@ body {
   text-align: center;
 }
 
+.glyphicon {
+  padding:50px 10px;
+}
+
+
+.logo-small {
+  color: #f4511e;
+  font-size: 50px;
+}
+
+.logo {
+  color: #f4511e;
+  font-size: 200px;
+}
+
 .site-header .navbar-nav .nav-link {
   color: #cbd5db;
 }
@@ -49,7 +64,6 @@ body {
 }
 
 .flabel {
-  height: 60px;
   border-bottom: none;
   color: #5E6977;
   font-size: 18px;
@@ -278,6 +292,11 @@ input:focus {
 
 /* Responsive */
 @media (max-width: 800px) {
+  .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+  }
+
   .shopping-cart {
     width: 100%;
     height: auto;
