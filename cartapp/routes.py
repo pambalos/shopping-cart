@@ -58,8 +58,8 @@ def profile():
     form = ProfileForm()
     if form.validate_on_submit():
         if 'save' in request.form:
-            user = User.query.filter_by(email = current_user.email).first()
-            if User.query.filter_by(email = form.email.data).first() is not None:
+            user = User.query.filter_by(email = form.email.data).first()
+            if form.email.data != current_user.email and user is not None:
                 flash(f'The email address "{form.email.data}" is already in use.', 'danger')
             else:
                 user.update(form.email.data, form.first_name.data, form.last_name.data)
