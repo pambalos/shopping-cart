@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 {% block content %}
-<body  style = "padding: 0px 0px; height: auto;">
+<body style = "padding: 0px 0px; padding-top: 100px; height: 100%; background-size: cover;" background = "{{ url_for('static', filename = 'shoes-dark-green.jpg') }}">
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if not messages %}
-      <div class = "shopping-cart" style="width: 90%; max-width: 600px; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 110px;">
+      <div class = "shopping-cart" style="width: 90%; max-width: 600px; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 0px;">
       {% else %}
-      <div class = "shopping-cart" style="width: 90%; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 0;">
+      <div class = "shopping-cart" style="width: 90%; max-width: 600px; padding-bottom: 5%; height: auto; margin-top: 0;">
     {% endif %}
   {% endwith %}
 
@@ -54,9 +54,9 @@
       <div class="form-group" style="height: 130px; margin-bottom: 0px; padding-top: 50px;">
         {% if current_user.token is none %}
         <h3>
-          <a href={{ url_for('authorize') }}>Link Checkbook Account</a>
+          <a href={{ url_for('authorize') }} style = "font-weight: 350;">Link Checkbook Account</a>
         </h3>
-        <h6>
+        <h6 style = "font-weight: 350; font-size:12;">
           Link or sign up for a checkbook account to make your purchases easy.
         </h6>
         {% else %}
@@ -64,7 +64,7 @@
           Checkbook Account Linked
         </h3>
         <h6>
-          {{ form.delink(class="btn btn-outline-info", style = "color: #989898;background-color: White;text-align: center;border-width: 0;text-decoration: underline; padding-top: 0;") }}
+          {{ form.delink(class="btn btn-outline-info", style = "font-size: 15px; color: #d4d4d4;background-color: White;text-align: center;border-width: 0;text-decoration: underline; padding-top: 0;") }}
         </h6>
         {% endif %}
       </div>
