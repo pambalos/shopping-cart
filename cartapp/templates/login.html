@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
 <body style = "padding: 0px 0px; padding-top: 100px; height: 100%; background-size: cover;">
-  <div class = "shopping-cart" style="max-width: 80%; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 0;">
+  <div class = "shopping-cart" style="max-width: 80%; min-width: auto; padding-bottom: 60px; height: auto; margin-top: 0;">
     <form method = "POST" action = "">
       {{ form.hidden_tag() }}
       <legend class = "border-bottom" style="margin-bottom: 0px;height: 60px;padding-top: 10px;">Login</legend>
@@ -28,10 +28,14 @@
                 {% endfor %}
             </div>
         {% else %}
-          {{ form.password(class="form-c form-c-lg", style = "float: left; width: 90%; margin-left: 5%; margin-right: 5%") }}
+          {{ form.password(class="form-c form-c-lg", style = "float: left; width: 90%; margin-left: 5%; margin-right: 5%; margin-bottom: 10px;") }}
         {% endif %}
+        <div class = "form-check">
+          {{ form.remember(class = "form-check-input") }}
+          {{ form.remember.label(class="form-check-label") }}
+        </div>
       </div>
-      <div class = "totalprice" style = "padding-top: 0px;">
+      <div class = "totalprice" style = "padding-top: 30px;">
         {{ form.submit(class="btn btn-outline-info", style = "color: #ffffff; background-color: #0253c5; text-align: center;") }}
       </div>
     </form>

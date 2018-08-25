@@ -76,7 +76,7 @@
       </div>
 
       <!-- Product #3 -->
-      <div class="item">
+      <div class="item" style = "border-bottom: 1px solid #E1E8EE;">
         <div class="buttons">
           <span class="delete-btn"></span>
           <span class="like-btn"></span>
@@ -119,13 +119,15 @@
     </div>
 
     <script type="text/javascript">
+
+    var pt = 0;
       $('.minus-btn').on('click', function(e) {
     		e.preventDefault();
     		var $this = $(this);
     		var $input = $this.closest('div').find('input');
         var $pricei = $this.closest('div').find('data-p');
         var itpr = parseInt($pricei.val());
-
+        console.log('item price: ' + itpr);
         var $out = $this.find('total');
         var pt = parseInt($out.val());
 

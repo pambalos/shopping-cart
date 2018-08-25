@@ -14,17 +14,8 @@ db.app = app
 oauth = OAuth(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
 
-'''
-#OAuth2 setup
-checkbook = oauth.remote_app('checkbook',
-    base_url = "https://sandbox.checkbook.io/v3/"
-    request_token_url = "https://checkbook.io/oauth/token"
-
-    authorize_url = "https://checkbook.io/oauth/authorize"
-    consumer_key = api_key
-    consumer_secret = api_secret
-)
-'''
 #import routes after app and db initialization to avoid circular importing
 from cartapp import routes

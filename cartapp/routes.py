@@ -3,13 +3,14 @@ from cartapp import app, db
 from cartapp.forms import OrderForm, RegistrationForm, LoginForm, ProfileForm
 from cartapp.models import User, Order
 from cartapp import bcrypt, oauth
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 from requests_oauthlib import OAuth2Session
 from cartapp.keys import *
 import requests, json
 
 @app.route('/')
 @app.route('/shop', methods = ['GET', 'POST'])
+@login_required
 def shop():
     form = OrderForm()
     if form.validate_on_submit():
@@ -46,14 +47,16 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user) # if does not work try editing to login_user(user, remember = True)
+            login_user(user, remember = form.remember.data) # if does not work try editing to login_user(user, remember = True)
+            next_page = request.args.get('next') #request.args is a dictionary but accessing with ['next'] would throw an error if nonexistent
             flash(f'Login Successful', 'success')
-            return redirect(url_for('profile'))
+            return redirect(next_page) if next_page else redirect(url_for('profile'))
         else:
             flash(f'Login failed, please check email and password', 'danger')
     return render_template('login.html', title = "Login", form = form)
 
 @app.route('/profile', methods = ['GET', 'POST'])
+@login_required
 def profile():
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
