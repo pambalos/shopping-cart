@@ -324,10 +324,18 @@ input:focus {
     }
 }
 
+@media (max-width: 768px) {
+
+}
+
 @media (max-width: 370px) {
   input#save {
     margin-top: 20px;
   }
+}
+
+input#delink:hover{
+  font-weight: 405;
 }
 
 @media (min-width: 768px) {
