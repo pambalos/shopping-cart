@@ -12,7 +12,7 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  background-image: url("shoes-dark-green.jpg");
+  background-image: url("shoes-blue.jpg");
   background-size: cover;
 }
 
@@ -74,7 +74,7 @@ body {
 .jumbotron {
     padding: 2rem 1rem;
     margin-bottom: 2rem;
-    background-color: #7ec855;
+    background-image: url('shoes-blue.jpg');
 }
 
 .myclass {
@@ -322,6 +322,12 @@ input:focus {
         text-align: center;
         margin: 25px 0;
     }
+}
+
+@media (max-width: 370px) {
+  input#save {
+    margin-top: 20px;
+  }
 }
 
 @media (min-width: 768px) {
