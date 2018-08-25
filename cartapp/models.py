@@ -33,7 +33,7 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{ self.email }', {self.id})"
 
-class Order(db.Model, UserMixin):
+class Order(db.Model):
     p1 = 549
     p2 = 870
     p3 = 349

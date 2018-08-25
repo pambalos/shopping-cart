@@ -55,6 +55,8 @@ def login():
 
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
     form = ProfileForm()
     if form.validate_on_submit():
         if 'save' in request.form:
@@ -78,7 +80,7 @@ def register():
         db.session.commit()
         flash(f'Account for {form.email.data} created, you may now login', 'success')
         return redirect(url_for('login'))
-    if current_user is not None:
+    if current_user.is_authenticated:
         return redirect(url_for('profile'))
     return render_template('register.html', title = 'Register', form = form)
 
