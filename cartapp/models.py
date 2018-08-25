@@ -1,5 +1,6 @@
 from cartapp import db, login_manager
 from flask_login import UserMixin #Additional set up needed to use Login Manager
+from datetime import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -12,7 +13,8 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(20), unique = False)
     last_name = db.Column(db.String(20), unique = False)
     token = db.Column(db.String(60))
-    rToken = db.Column(db.String(60))
+    refresh_token = db.Column(db.String(60))
+    token_expires = db.Column(db.DateTime)
 
     def update(self, email, first_name, last_name):
         self.email = email
@@ -20,14 +22,15 @@ class User(db.Model, UserMixin):
         self.last_name = last_name
         db.session.commit()
 
-    def update_token(self, token, rToken):
+    def update_token(self, token, refresh_token, expiry):
         self.token = token
-        self.rToken = rToken
+        self.refresh_token = refresh_token
+        self.token_expires = expiry
         db.session.commit()
 
     def delinkCheckbook(self):
         self.token = None
-        self.rToken = None
+        self.refresh_token = None
         db.session.commit()
 
     def __repr__(self):

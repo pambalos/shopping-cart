@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-<body style = "padding: 0px 0px; padding-top: 100px; height: 100%; background-size: cover;" background = "{{ url_for('static', filename = 'shoes-dark-green.jpg') }}">
+<body style = "padding: 0px 0px; padding-top: 100px; height: 100%; background-size: cover;" id = "navoveride">
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if not messages %}
       <div class = "shopping-cart" style="width: 90%; max-width: 600px; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 0px;">
@@ -64,7 +64,7 @@
           Checkbook Account Linked
         </h3>
         <h6>
-          {{ form.delink(class="btn btn-outline-info-delink", style = "font-size: 15px; color: #d4d4d4;background-color: White;text-align: center;border-width: 0;text-decoration: underline; padding-top: 0;") }}
+          {{ form.delink(class="btn btn-outline-info-delink", style = "font-size: 15px; color: #b7b7b7;background-color: White;text-align: center;border-width: 0;text-decoration: underline; padding-top: 0;") }}
         </h6>
         {% endif %}
       </div>
