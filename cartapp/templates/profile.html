@@ -3,9 +3,9 @@
 <body style = "padding: 0px 0px; padding-top: 100px; height: 100%; background-size: cover;" id = "navoveride">
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if not messages %}
-      <div class = "shopping-cart" style="width: 90%; max-width: 600px; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 0px;">
+      <div class = "shopping-cart" style="width: 90%; max-width: 600px; min-width: auto; padding-bottom: 5%; height: auto; margin-top: 0px; margin-bottom: 55px;">
       {% else %}
-      <div class = "shopping-cart" style="width: 90%; max-width: 600px; padding-bottom: 5%; height: auto; margin-top: 0;">
+      <div class = "shopping-cart" style="width: 90%; max-width: 600px; padding-bottom: 5%; height: auto; margin-top: 0; margin-bottom: 55px;">
     {% endif %}
   {% endwith %}
 
@@ -63,7 +63,7 @@
         <h3 style = "font-weight: 350; margin-bottom: 0;">
           Checkbook Account Linked
         </h3>
-        <h6>
+        <h6 id = "aboutPage">
           {{ form.delink(class="btn btn-outline-info-delink", style = "font-size: 15px; color: #b7b7b7;background-color: White;text-align: center;border-width: 0;text-decoration: underline; padding-top: 0;") }}
         </h6>
         {% endif %}

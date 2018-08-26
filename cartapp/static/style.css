@@ -16,14 +16,23 @@ body {
   background-size: cover;
 }
 
-#aboutPage h1, h2, h3, h4, h5, h6{
+#aboutPage h1, h2, h3, h4, h5{
   font-weight: 300;
+}
+
+#aboutPage h6 {
+  font-weight: 300;
+  margin: 0;
 }
 
 #overrides label {
   font-weight: 400;
   margin-top: 1px;
   margin-left: 20px
+}
+
+#overrides h6{
+  margin-top: 0;
 }
 
 @media (max-width: 768px) {
