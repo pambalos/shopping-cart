@@ -13,10 +13,19 @@ import requests, json, time, datetime
 @login_required
 def shop():
     form = OrderForm()
+    print('Created a form at least')
     if form.validate_on_submit():
+        print(form)
+        displayCart(form)
         return render_template('displayCart.html', title = 'Cart', form = form)
     return render_template('index.html', title = 'Shop', form = form)
 
+@app.route('/displayCart', methods = ['GET', 'POST'])
+def displayCart(form):
+    form = form
+    if form.validate_on_submit():
+        flash(f'Submit final order processed', 'success')
+    return render_template('displayCart.html', title = 'Cart', form = form)
 
 @app.route('/home', methods = ['GET', 'POST'])
 def home():
@@ -126,5 +135,5 @@ def callback():
     print(response_data["expires_in"])
     user = User.query.filter_by(email = current_user.email).first()
     user.update_token(response_data["access_token"], response_data["refresh_token"], time_expires)
-
+    flash(f'You have successully linked your checkbook account.', 'success')
     return redirect(url_for('profile'))
