@@ -33,6 +33,23 @@ class User(db.Model, UserMixin):
         self.refresh_token = None
         db.session.commit()
 
+    def refresh_token(self):
+        #refresh token method here, only called when call to get_token() checks and finds token to be expired
+        refresh_headers = {
+            'client_id' : client_id,
+            'grant_type': 'authorization_code',
+            'scope' : ['check'],
+            'code' : acode,
+            'redirect_uri' : 'http://127.0.0.1:5000/callback',
+            'client_secret' : api_secret
+        }
+
+    def get_token(self):
+        time_now = datetime.now()
+        if time_now > self.token_expires:
+            self.refresh_token()
+        return self.token
+
     def __repr__(self):
         return f"User('{ self.email }', {self.id})"
 

@@ -6,7 +6,8 @@ from cartapp import bcrypt, oauth
 from flask_login import login_user, current_user, logout_user, login_required
 from requests_oauthlib import OAuth2Session
 from cartapp.keys import *
-import requests, json, time, datetime
+import requests, json, time
+from datetime import datetime, timedelta
 
 @app.route('/')
 @app.route('/shop', methods = ['GET', 'POST'])
@@ -113,7 +114,7 @@ def callback():
     # cbook = OAuth2Session(client_id, redirect_uri = callback_url, state = session['oauth_state'])
     codebase = str(request.url)
     trash, acode = codebase.split("code=") #acode now holds parsed authorization code passed back in redirect header
-
+    
     token_headers = {
         'client_id' : client_id,
         'grant_type': 'authorization_code',
@@ -124,9 +125,9 @@ def callback():
     }
 
     response = requests.post(token_url, data = token_headers) #proper request formatting
-    time_requested = datetime.datetime.now()
+    time_requested = datetime.now()
     response_data = json.loads(response.text) #load data in as dictionary
-    time_expires = time_requested + datetime.timedelta(seconds = response_data['expires_in'])
+    time_expires = time_requested + timedelta(seconds = response_data['expires_in'])
     print('time requested : %s' % time_requested)
     print('time expires : %s' % time_expires)
     print(response.text)
