@@ -50,6 +50,8 @@ class User(db.Model, UserMixin):
         response = requests.post(token_url, data = refresh_headers)
         print('post made to token_url with refresh_headers gives:')
         print(response.text)
+        #To save new token, simply call update_token passing response data
+        
 
     def get_token(self):
         time_now = datetime.now()
