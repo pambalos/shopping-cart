@@ -1,6 +1,8 @@
 from cartapp import db, login_manager
 from flask_login import UserMixin #Additional set up needed to use Login Manager
 from datetime import datetime
+from cartapp.keys import *
+import requests
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -35,14 +37,19 @@ class User(db.Model, UserMixin):
 
     def refresh_token(self):
         #refresh token method here, only called when call to get_token() checks and finds token to be expired
+        print("Inside refresh_token() now")
         refresh_headers = {
             'client_id' : client_id,
             'grant_type': 'authorization_code',
             'scope' : ['check'],
-            'code' : acode,
-            'redirect_uri' : 'http://127.0.0.1:5000/callback',
+            'code': self.token,
+            'refresh_token' : self.refresh_token,
+            'redirect_uri' : callback_url,
             'client_secret' : api_secret
         }
+        response = requests.post(token_url, data = refresh_headers)
+        print('post made to token_url with refresh_headers gives:')
+        print(response.text)
 
     def get_token(self):
         time_now = datetime.now()

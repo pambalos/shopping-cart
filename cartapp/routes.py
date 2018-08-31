@@ -68,8 +68,6 @@ def login():
 @app.route('/profile', methods = ['GET', 'POST'])
 @login_required
 def profile():
-    if not current_user.is_authenticated:
-        return redirect(url_for('login'))
     form = ProfileForm()
     if form.validate_on_submit():
         if 'save' in request.form:
@@ -80,7 +78,8 @@ def profile():
                 user.update(form.email.data, form.first_name.data, form.last_name.data)
         if 'delink' in request.form:
             user = User.query.filter_by(email = current_user.email).first()
-            user.delinkCheckbook()
+            #user.delinkCheckbook()
+            user.refresh_token()
     return render_template('profile.html', title = 'Profile', form = form)
 
 @app.route('/register', methods = ['GET', 'POST'])
@@ -114,13 +113,13 @@ def callback():
     # cbook = OAuth2Session(client_id, redirect_uri = callback_url, state = session['oauth_state'])
     codebase = str(request.url)
     trash, acode = codebase.split("code=") #acode now holds parsed authorization code passed back in redirect header
-    
+
     token_headers = {
         'client_id' : client_id,
         'grant_type': 'authorization_code',
         'scope' : ['check'],
         'code' : acode,
-        'redirect_uri' : 'http://127.0.0.1:5000/callback',
+        'redirect_uri' : callback_url,
         'client_secret' : api_secret
     }
 
