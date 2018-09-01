@@ -39,19 +39,17 @@ class User(db.Model, UserMixin):
         #refresh token method here, only called when call to get_token() checks and finds token to be expired
         print("Inside refresh_token() now")
         refresh_headers = {
-            'client_id' : client_id,
-            'grant_type': 'authorization_code',
-            'scope' : ['check'],
-            'code': self.token,
+            'grant_type': 'refresh_token',
             'refresh_token' : self.refresh_token,
-            'redirect_uri' : callback_url,
+            'client_id' : client_id,
             'client_secret' : api_secret
         }
+
         response = requests.post(token_url, data = refresh_headers)
         print('post made to token_url with refresh_headers gives:')
         print(response.text)
         #To save new token, simply call update_token passing response data
-        
+
 
     def get_token(self):
         time_now = datetime.now()
