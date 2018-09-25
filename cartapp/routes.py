@@ -21,6 +21,10 @@ def shop():
         return render_template('displayCart.html', title = 'Cart', form = form)
     return render_template('index.html', title = 'Shop', form = form)
 
+@app.route('/calendar', methods = ['POST', 'GET'])
+def calendar():
+    return render_template('calendar.html')
+
 @app.route('/displayCart', methods = ['GET', 'POST'])
 def displayCart(form):
     form = form
