@@ -9,7 +9,6 @@ from cartapp.keys import *
 import requests, json, time
 from datetime import datetime, timedelta
 
-@app.route('/')
 @app.route('/shop', methods = ['GET', 'POST'])
 @login_required
 def shop():
@@ -18,6 +17,11 @@ def shop():
     if form.validate_on_submit():
         print(form)
         displayCart(form)
+        order = {}
+        order['quant_one'] = form.quant_one.data
+        order['quant_two'] = form.quant_two.data
+        order['quant_three'] = form.quant_three.data
+
         return render_template('displayCart.html', title = 'Cart', form = form)
     return render_template('index.html', title = 'Shop', form = form)
 
@@ -28,6 +32,7 @@ def displayCart(form):
         flash(f'Submit final order processed', 'success')
     return render_template('displayCart.html', title = 'Cart', form = form)
 
+@app.route('/', methods = ['GET', 'POST'])
 @app.route('/home', methods = ['GET', 'POST'])
 def home():
     form = OrderForm()

@@ -6,6 +6,7 @@ from flask_login import LoginManager
 from flask_oauthlib.client import OAuth
 from cartapp.keys import *
 # All Flask app must create an app instance like this:
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] =' sZWjFJmyFQnzkVMxbOIAIZNJhaJV' #setting secret key
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db' #importing sqldatabase
