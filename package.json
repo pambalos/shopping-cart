@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/howsmywater/WebApp.git"
+    "url": "git+https://github.com/pambalos/shopping-cart"
   },
-  "author": "Vihan B <contact@vihan.org> (vihan.org)",
+  "author": "Bradley J <bradleyjusticeca@gmail.com> ()",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/howsmywater/WebApp/issues"
+    "url": "https://github.com/pambalos/shopping-cart/issues"
   },
-  "homepage": "https://github.com/howsmywater/WebApp#readme",
+  "homepage": "https://github.com/pambalos/shopping-cart",
   "dependencies": {
     "@babel/preset-env": "^7.0.0",
     "babel-loader": "^8.0.2",
