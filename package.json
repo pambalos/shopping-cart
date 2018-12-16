@@ -1,7 +1,7 @@
 {
   "name": "shopping-cart",
   "version": "1.0.0",
-  "description": "",
+  "description": "run `npm install`. and then `npx webpack`",
   "private": true,
   "scripts": {
     "build": "webpack -w",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pambalos/shopping-cart"
+    "url": "git+https://github.com/pambalos/shopping-cart.git"
   },
-  "author": "Bradley J <bradleyjusticeca@gmail.com> ()",
+  "author": "Bradley J <bradleyjusticeca@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pambalos/shopping-cart/issues"
   },
-  "homepage": "https://github.com/pambalos/shopping-cart",
+  "homepage": "https://github.com/pambalos/shopping-cart#readme",
   "dependencies": {
     "@babel/preset-env": "^7.0.0",
     "babel-loader": "^8.0.2",
@@ -36,5 +36,6 @@
     "styled-components": "^3.4.6",
     "webpack": "^4.19.0",
     "webpack-cli": "^3.1.0"
-  }
+  },
+  "main": "index.js"
 }
