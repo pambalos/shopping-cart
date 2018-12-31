@@ -6,3 +6,4 @@ tcl/
 node_modules/
 pip-selfcheck.json
 *.pyc
+env/

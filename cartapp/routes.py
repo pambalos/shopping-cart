@@ -34,6 +34,7 @@ def displayCart(form):
     form = form
     if form.validate_on_submit():
         flash(f'Submit final order processed', 'success')
+
     return render_template('displayCart.html', title = 'Cart', form = form)
 
 @app.route('/', methods = ['GET', 'POST'])
@@ -99,7 +100,7 @@ def register():
         user = User(email = form.email.data, password = hashp)
         db.session.add(user)
         db.session.commit()
-        flash(f'Account for {form.email.data} created, you may now login', 'success')
+        flash(f'Account for { form.email.data } created, you may now login', 'success')
         return redirect(url_for('login'))
     if current_user.is_authenticated:
         return redirect(url_for('profile'))
