@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MyDayPicker } from './daypicker';
+import MyDayPicker from './daypicker';
 
 ReactDOM.render(
   <MyDayPicker />,
